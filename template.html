@@ -117,83 +117,33 @@
                 </div>
             </div>
 
+            {% for category in categorized_drinks %}
             <div class="col-12 section-title text-center mb-5">
-                <h2 class="d-block">Белые вина</h2>
+                <h2 class="d-block">{{category}}</h2>
             </div>
             <div class="row">
 
-                {% for wine in white_wines %}
+                {% for drink in categorized_drinks[category] %}
 
                 <div class="col-lg-4 mb-5 col-md-6">
                     <div class="wine_v_1 text-center pb-4 pt-5">
-                        <img src="images/{{ wine.Картинка }}" alt="Image" class="img-fluid">
-                        {% if wine.Акция %}
-                        <img src="images/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
+                        <img src="images/{{ drink.Картинка }}" alt="Image" class="img-fluid">
+                        {% if drink.Акция %}
+                        <img src="images/profitable.png"
+                             style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
                         {% endif %}
                         <div>
-                            <h3 class="heading mt-3 mb-3 text-dark">{{ wine.Название }}</h3>
+                            <h3 class="heading mt-3 mb-3 text-dark">{{ drink.Название }}</h3>
                             <p>
-                                Сорт винограда - {{ wine.Сорт }}<br/>
-                                <span class="price">{{ wine.Цена }} р.</span>
+                                Сорт винограда - {{ drink.Сорт }}<br/>
+                                <span class="price">{{ drink.Цена }} р.</span>
                             </p>
                         </div>
                     </div>
                 </div>
 
                 {% endfor %}
-
-            <div class="col-12 section-title text-center mb-5">
-                <h2 class="d-block">Красные вина</h2>
-            </div>
-            <div class="row">
-
-                {% for wine in red_wines %}
-
-                <div class="col-lg-4 mb-5 col-md-6">
-                    <div class="wine_v_1 text-center pb-4 pt-5">
-                        <img src="images/{{ wine.Картинка }}" alt="Image" class="img-fluid">
-                        {% if wine.Акция %}
-                        <img src="images/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
-                        {% endif %}
-                        <div>
-                            <h3 class="heading mt-3 mb-3 text-dark">{{ wine.Название }}</h3>
-                            <p>
-                                Сорт винограда - {{ wine.Сорт }}<br/>
-                                <span class="price">{{ wine.Цена }} р.</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                {% endfor %}
-
-            <div class="col-12 section-title text-center mb-5">
-                <h2 class="d-block">Напитки</h2>
-            </div>
-            <div class="row">
-
-                {% for wine in drinks %}
-
-                <div class="col-lg-4 mb-5 col-md-6">
-                    <div class="wine_v_1 text-center pb-4 pt-5">
-                        <img src="images/{{ wine.Картинка }}" alt="Image" class="img-fluid">
-                        {% if wine.Акция %}
-                        <img src="images/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
-                        {% endif %}
-                        <div>
-                            <h3 class="heading mt-3 mb-3 text-dark">{{ wine.Название }}</h3>
-                            <p>
-                                {% if wine.Сорт %}
-                                Сорт винограда - {{ wine.Сорт }}<br/>
-                                {% endif %}
-
-                                <span class="price">{{ wine.Цена }} р.</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                {% endfor %}
+            {% endfor %}
 
             </div>
         </div>

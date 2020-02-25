@@ -10,20 +10,20 @@ env = Environment(
 
 template = env.get_template('template.html')
 
-wines = pandas.read_excel('wine.xlsx', na_values=['N/A', 'NA'], keep_default_na=False).to_dict(orient='record')
-print(wines)
-white_wines = [wine for wine in wines if wine['Категория'] == 'Белые вина']
-red_wines = [wine for wine in wines if wine['Категория'] == 'Красные вина']
-drinks = [wine for wine in wines if wine['Категория'] == 'Напитки']
+drinks = pandas.read_excel('wine.xlsx', na_values=['N/A', 'NA'], keep_default_na=False).to_dict(orient='record')
+
+categorized_drinks = {}
+for drink in drinks:
+    if drink['Категория'] not in categorized_drinks:
+        categorized_drinks[drink['Категория']] = []
+    categorized_drinks[drink['Категория']].append(drink)
 
 year_of_foundation = 1920
 age = datetime.now().year - year_of_foundation
 
 rendered_page = template.render(
     age=age,
-    white_wines=white_wines,
-    red_wines=red_wines,
-    drinks=drinks
+    categorized_drinks=categorized_drinks,
 )
 
 with open('index.html', 'w', encoding="utf8") as file:

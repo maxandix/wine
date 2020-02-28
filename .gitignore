@@ -7,6 +7,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+wine.xlsx
+index.html
 
 # C extensions
 *.so
